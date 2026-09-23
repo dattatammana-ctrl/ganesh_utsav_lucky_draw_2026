@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Small Laddu Lucky Draw &mdash; Ganesh Utsav 2026</title>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<div class="page-header">
+  <h1>🎟️ Small Laddu Lucky Draw</h1>
+  <p>Ganesh Utsav 2026 &mdash; On Cloud 33</p>
+  <p style="margin-top:8px;"><a href="admin.html" style="color:#fff;opacity:0.85;font-size:12.5px;text-decoration:underline;">Committee Admin Login →</a></p>
+</div>
+
+<div class="container">
+
+  <div class="card guidelines">
+    <h2>🙏 Guidelines</h2>
+    <ul>
+      <li>Each token / coupon costs <span class="highlight">₹100/-</span> and carries a unique <span class="highlight">Serial Number from 501 to 1000</span>.</li>
+      <li>Pick any <span class="highlight">available serial number</span> from the dropdown on the ticket below.</li>
+      <li>You may book <span class="highlight">multiple tokens</span> &mdash; click "Add Another Ticket" below to add a full extra ticket (its own Name / Tower / Flat / Mobile / Serial), since the person booking each token can be different.</li>
+      <li>Complete <span class="highlight">payment</span> using the details below, then upload your payment screenshot as proof.</li>
+      <li>After submitting, you'll get a downloadable copy of your filled ticket(s) &mdash; the same details are recorded with us for the draw.</li>
+    </ul>
+  </div>
+
+  <form id="luckyForm">
+
+    <!-- ================= TICKETS (also the entry form) =================
+         Each ticket below is a fully independent unit: its own Serial
+         Number, Name, Tower, Flat & Mobile. "Add Another Ticket" clones
+         a brand-new blank ticket, since different tokens can belong to
+         different people. -->
+    <div id="ticketsContainer"></div>
+
+    <button type="button" class="add-ticket-btn" id="addTicketBtn">➕ Add Another Ticket</button>
+
+    <div class="order-summary" id="orderSummary">
+      <span id="ticketCountText">1 ticket</span>
+      <span id="orderTotalText">Total: ₹100/-</span>
+    </div>
+
+    <p class="required-note">All fields marked <span class="required-star">*</span> are mandatory on every ticket, including the Token Serial Number.</p>
+
+    <!-- ================= PAYMENT (below the tickets) ================= -->
+    <div class="card payment-card">
+      <h2>💳 Payment</h2>
+      <div class="payment-grid">
+        <div class="qr-block">
+          <div class="qr-placeholder">
+            <img id="qrImage" src="assets/upi-qr.png" alt="Scan to Pay via UPI" />
+          </div>
+          <p class="qr-caption">Scan with any UPI app to pay</p>
+        </div>
+        <div class="upi-block">
+          <p><strong>UPI ID:</strong> <span id="upiIdText">8884501914@icici</span></p>
+          <p><strong>Payee:</strong> <span id="upiPayeeText">Pradeep Kumar Associates</span></p>
+          <p><strong>Amount to Pay:</strong> <span id="payAmountText">₹100/-</span></p>
+          <a href="#" id="upiPayBtn" class="submit-btn upi-btn" style="display:none;">📲 Pay via UPI App</a>
+          <p class="upi-note" id="upiWebNote">Open this page on your phone to pay directly via a UPI app, or scan the QR code with any banking / UPI app.</p>
+        </div>
+      </div>
+
+      <div class="payment-proof-block">
+        <label for="paymentProof">Upload Payment Screenshot <span class="required-star">*</span></label>
+        <input type="file" id="paymentProof" accept="image/*" required />
+        <div id="paymentProofPreviewWrap" class="payment-proof-preview-wrap" style="display:none;">
+          <img id="paymentProofPreview" alt="Payment screenshot preview" />
+        </div>
+        <p class="upi-note">Attach one screenshot covering the total payment above &mdash; it will be submitted along with all your ticket(s).</p>
+      </div>
+
+      <button type="submit" class="submit-btn" id="luckySubmitBtn" style="margin-top:18px;">Book My Lucky Draw Token(s)</button>
+      <div id="luckyStatusMsg" class="status-msg"></div>
+    </div>
+
+  </form>
+
+  <div class="card" id="receiptCard" style="display:none;">
+    <h2>✅ Your Coupon Receipt</h2>
+    <p class="receipt-sub">This is your downloadable copy &mdash; the identical details are stored with us for the Lucky Draw.</p>
+    <div id="ticketPreviewList"></div>
+    <canvas id="ticketCanvas" width="900" height="420" style="display:none;"></canvas>
+    <button class="submit-btn" id="downloadReceiptBtn" style="margin-top:14px;">⬇️ Download My Receipt(s)</button>
+  </div>
+
+</div>
+
+<!-- Celebration success overlay -->
+<div id="celebrationOverlay" class="celebration-overlay">
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+  <div class="celebration-box">
+    <div class="celebration-emoji">🐘🎉🪔</div>
+    <h2>All the Best!</h2>
+    <p>May Lord Ganesha Bless You 🙏</p>
+    <p class="celebration-sub">Your Lucky Draw token has been booked successfully.</p>
+    <button id="celebrationCloseBtn" class="submit-btn celebration-close-btn">Continue</button>
+  </div>
+</div>
+
+<footer>Made with devotion for the Ganesh Chaturthi celebrations 🕉️</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/lucky.js"></script>
+</body>
+</html>

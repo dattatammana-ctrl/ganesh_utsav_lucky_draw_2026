@@ -1,0 +1,457 @@
+:root {
+  --blue: #1450a3;
+  --deep-red: #b5121b;
+  --gold: #d4a017;
+  --cream: #fff8ec;
+  --ink: #2b1300;
+  --muted: #9a8f80;
+  --green: #2e7d32;
+  --card: #ffffff;
+  --radius: 14px;
+  --shadow: 0 4px 16px rgba(20, 80, 163, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.page-header {
+  background: linear-gradient(135deg, var(--deep-red), #7d0c12);
+  color: #fff;
+  text-align: center;
+  padding: 28px 20px 22px;
+}
+.page-header h1 { margin: 0 0 4px; font-size: 26px; }
+.page-header p { margin: 0; opacity: 0.9; font-size: 14.5px; }
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  margin-bottom: 22px;
+}
+.card h2 { margin: 0 0 14px; font-size: 19px; color: var(--deep-red); }
+
+.guidelines ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.7; }
+.highlight { color: var(--deep-red); font-weight: 700; }
+
+.required-star { color: var(--deep-red); }
+.required-note { font-size: 12.5px; color: var(--muted); margin: 10px 0; }
+
+.field { margin-bottom: 12px; }
+.field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: var(--ink); }
+.field input, .field select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1.5px solid #e6d9c6;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fffdfa;
+}
+.field-row { display: flex; gap: 12px; }
+.field-row .field { flex: 1; margin-bottom: 0; }
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--deep-red), #8f0e16);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+}
+.submit-btn:hover { opacity: 0.92; }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.status-msg { margin-top: 10px; font-size: 13.5px; font-weight: 600; min-height: 1px; }
+.status-msg.success { color: var(--green); }
+.status-msg.error { color: var(--deep-red); }
+
+/* ==================== TICKET LAYOUT ====================
+   Left column: Ganesha image, fills the entire left side, edge to edge
+   with even spacing on all sides.
+   Right column, top to bottom:
+     1. 🌺 On Cloud 33 🌺   (blue, centered)      | serial box far right (blue number)
+     2. Ganesh Utsav 2026 (centered)
+     3. ✦ Small Laddu Lucky Draw ✦ (ribbon, gold icons both ends)
+     4. Ticket / Token Price: ₹100/-
+     5. Resident detail fields (Name / Tower / Flat / Mobile)
+     6. Footer — two centered lines, blue then red
+   ======================================================== */
+.ticket {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  border: 3px solid var(--gold);
+  border-radius: 16px;
+  padding: 18px;
+  background: #fffdf7;
+  position: relative;
+}
+
+.ticket-left {
+  flex: 0 0 34%;
+  max-width: 34%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fffdf7;
+  border-radius: 12px;
+  border: 2px solid var(--gold);
+  padding: 6px;
+  position: relative;
+}
+.ganesha-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.stamp-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  border: 3px solid var(--deep-red);
+  color: var(--deep-red);
+  font-weight: 800;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.88);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.ticket-right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ticket-serial-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1.5px solid #b9b3a6;
+  border-radius: 8px;
+  padding: 6px 10px;
+  text-align: center;
+  min-width: 96px;
+  background: #fff;
+}
+.serial-caption {
+  display: block;
+  font-size: 9.5px;
+  color: var(--blue);
+  font-weight: 700;
+  margin-bottom: 3px;
+  white-space: nowrap;
+}
+.ticket-serial-box select {
+  width: 100%;
+  padding: 5px 6px;
+  border: 1.5px solid var(--gold);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--blue);
+  background: #fffdfa;
+  text-align: center;
+}
+
+.row-brand {
+  text-align: center;
+  padding-top: 2px;
+  padding-right: 105px; /* keep clear of the absolute-positioned serial box */
+  margin-bottom: 2px;
+}
+.brand-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--blue);
+  margin: 0 6px;
+}
+.flower-icon { font-size: 15px; }
+
+.row-event {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--deep-red);
+  margin-bottom: 10px;
+  padding-right: 105px; /* keep clear of the absolute-positioned serial box */
+}
+
+.row-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--deep-red), #8f0e16);
+  border: 1.5px solid #7d0c12;
+  color: #fff;
+  border-radius: 999px;
+  padding: 7px 12px;
+  margin-bottom: 10px;
+}
+.ribbon-text { font-weight: 800; font-size: 13.5px; }
+.gold-icon { color: var(--gold); font-size: 14px; }
+
+.row-price-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.row-price {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--ink);
+  background: linear-gradient(135deg, #ffe9a8, var(--gold));
+  border: 1.5px solid #b8860b;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-block;
+  max-width: 200px;
+  white-space: nowrap;
+}
+.row-price strong { color: var(--deep-red); }
+
+.ticket-fields {
+  border-top: 1px dashed #e6d9c6;
+  border-bottom: 1px dashed #e6d9c6;
+  padding: 12px 0;
+  margin-bottom: 10px;
+}
+
+/* ==================== Multiple tickets support ==================== */
+.extra-tickets { margin-top: 4px; }
+.extra-ticket-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff8ec;
+  border: 1.5px solid #e6d9c6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+.extra-ticket-row .serial-caption-inline {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--blue);
+  white-space: nowrap;
+}
+.extra-ticket-row select {
+  flex: 1;
+  padding: 7px 8px;
+  border: 1.5px solid var(--gold);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  background: #fffdfa;
+}
+.remove-ticket-btn {
+  background: none;
+  border: 1.5px solid var(--deep-red);
+  color: var(--deep-red);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+.remove-ticket-btn:hover { background: #fdeceb; }
+
+.ticket-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.ticket-block-header h2 { margin: 0; }
+.ticket-block { margin-bottom: 18px; }
+
+.add-ticket-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px;
+  background: #fff;
+  border: 1.5px dashed var(--blue);
+  border-radius: 10px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.add-ticket-btn:hover { background: #eef3fb; }
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: #fff4e0;
+  border: 1px solid #ffdca0;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+#ticketCountText { color: var(--ink); }
+#orderTotalText { color: var(--deep-red); font-size: 15px; }
+
+.row-footer {
+  text-align: center;
+}
+.footer-line-blue {
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--blue);
+}
+.footer-line-red {
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--deep-red);
+  margin-top: 3px;
+}
+
+/* Pen cursor over the ticket form fields — makes it feel like you're
+   writing directly on the physical coupon. */
+.ticket-fields input[type="text"],
+.ticket-fields input[type="tel"],
+.ticket-fields select,
+.ticket-serial-box select,
+.serial-select {
+  cursor:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="%23b5121b" d="M3 21l1.6-5.2L14.8 5.6l3.6 3.6L8.2 19.4 3 21z"/><path fill="%23d4a017" d="M15.6 4.8l2-2a1.5 1.5 0 0 1 2.1 0l1.5 1.5a1.5 1.5 0 0 1 0 2.1l-2 2-3.6-3.6z"/></svg>') 4 20,
+    text;
+}
+
+@media (max-width: 560px) {
+  .ticket { padding: 10px; gap: 10px; }
+  .ticket-left { flex: 0 0 34%; max-width: 34%; }
+  .ganesha-img { width: 100%; height: auto; }
+  .stamp-badge { bottom: 4px; font-size: 8px; padding: 2px 6px; border-width: 2px; }
+  .ticket-serial-box { min-width: 82px; padding: 5px 7px; }
+  .serial-caption { font-size: 8px; }
+  .ticket-serial-box select { font-size: 11px; padding: 4px; }
+  .row-brand { padding-right: 88px; }
+  .row-event { padding-right: 88px; font-size: 17px; }
+  .brand-title { font-size: 15px; }
+  .ribbon-text { font-size: 11px; }
+  .row-price { font-size: 10.5px; max-width: 170px; }
+}
+
+/* ==================== Payment (below ticket) ==================== */
+.payment-card { background: #fff4e0; border: 1px solid #ffdca0; }
+.payment-grid { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+.qr-block { text-align: center; }
+.qr-placeholder {
+  width: 200px; height: 200px; background: #fff;
+  border: 2px dashed var(--gold); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.qr-placeholder img { width: 100%; height: 100%; object-fit: contain; }
+.qr-caption { font-size: 12.5px; color: var(--muted); margin: 8px 0 0; }
+.upi-block { flex: 1; min-width: 220px; }
+.upi-block p { margin: 6px 0; font-size: 14.5px; }
+.upi-btn { display: inline-block; width: auto; padding: 10px 20px; margin-top: 8px; text-decoration: none; text-align: center; }
+.upi-note { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+
+.payment-proof-block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed #e6c896;
+}
+.payment-proof-block label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
+.payment-proof-block input[type="file"] {
+  display: block;
+  width: 100%;
+  font-size: 13.5px;
+  padding: 8px;
+  border: 1.5px dashed var(--gold);
+  border-radius: 8px;
+  background: #fff;
+}
+.payment-proof-preview-wrap {
+  margin-top: 10px;
+  max-width: 220px;
+}
+.payment-proof-preview-wrap img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1.5px solid var(--gold);
+}
+
+/* ==================== Receipt ==================== */
+.receipt-sub { font-size: 13.5px; color: var(--muted); margin-top: -6px; }
+
+/* ==================== Celebration overlay ==================== */
+.celebration-overlay {
+  position: fixed; inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(20,80,163,0.9), rgba(43,19,0,0.95));
+  display: none; align-items: center; justify-content: center; z-index: 9999; padding: 20px;
+}
+.celebration-overlay.show { display: flex; }
+.confetti-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.celebration-box {
+  position: relative;
+  background: linear-gradient(160deg, #fffdf5, #fff3d6);
+  border: 4px solid var(--gold);
+  border-radius: 20px;
+  padding: 36px 32px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: celebration-pop 0.45s ease-out;
+}
+@keyframes celebration-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  70% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.celebration-emoji { font-size: 44px; margin-bottom: 10px; animation: celebration-bounce 1.2s ease-in-out infinite; }
+@keyframes celebration-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.celebration-box h2 { margin: 0 0 6px; font-size: 28px; color: var(--deep-red); font-weight: 800; }
+.celebration-box p { margin: 4px 0; font-size: 16px; color: var(--blue); font-weight: 700; }
+.celebration-sub { font-size: 13.5px !important; color: var(--muted) !important; font-weight: 500 !important; margin-top: 8px !important; }
+.celebration-close-btn { margin-top: 20px; width: auto; padding: 10px 28px; }
+
+footer {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted);
+  padding: 20px;
+}
+
+/* Ticket preview (receipt) mirrors the same layout, scaled down */
+#ticketPreview .ticket { max-width: 100%; }

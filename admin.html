@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin &mdash; Small Laddu Lucky Draw</title>
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .admin-table-wrap { overflow-x: auto; margin-top: 14px; }
+  .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .admin-table th, .admin-table td {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid #eee2cf; white-space: nowrap;
+  }
+  .admin-table th { background: #fff4e0; color: var(--deep-red); position: sticky; top: 0; }
+  .admin-table tr:hover { background: #fffaf0; }
+  .admin-table a { color: var(--blue); text-decoration: none; font-weight: 700; }
+  .proof-thumb {
+    width: 60px; height: 60px; object-fit: cover; border-radius: 6px;
+    border: 1.5px solid var(--gold); display: block; cursor: pointer;
+  }
+  .stat-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 14px 0; }
+  .stat-box {
+    flex: 1; min-width: 130px; background: #fff4e0; border: 1px solid #ffdca0;
+    border-radius: 10px; padding: 14px; text-align: center;
+  }
+  .stat-box .num { font-size: 26px; font-weight: 800; color: var(--deep-red); }
+  .stat-box .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .search-box {
+    width: 100%; padding: 10px 12px; border: 1.5px solid #e6d9c6;
+    border-radius: 10px; font-size: 14px; margin-top: 6px;
+  }
+  .refresh-btn {
+    background: #fff; border: 1.5px solid var(--deep-red); color: var(--deep-red);
+    padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 13px;
+    cursor: pointer; margin-bottom: 10px;
+  }
+  .refresh-btn:hover { background: #fdeceb; }
+  .export-btn {
+    background: #fff; border: 1.5px solid var(--blue); color: var(--blue);
+    padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 13px;
+    cursor: pointer; margin-bottom: 10px; margin-left: 8px;
+  }
+  .export-btn:hover { background: #eef3fb; }
+  .login-card { max-width: 380px; margin: 60px auto; }
+  .login-card input { width: 100%; padding: 10px 12px; border: 1.5px solid #e6d9c6; border-radius: 8px; font-size: 14px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>🛠️ Lucky Draw Admin</h1>
+  <p>Ganesh Utsav 2026 &mdash; On Cloud 33 &mdash; Committee View</p>
+</div>
+
+<div class="container">
+
+  <div class="card login-card" id="loginCard">
+    <h2>🔒 Committee Login</h2>
+    <input type="password" id="adminPassword" placeholder="Enter committee password" />
+    <button class="submit-btn" id="loginBtn">View Submissions</button>
+    <div id="loginStatus" class="status-msg"></div>
+  </div>
+
+  <div class="card" id="dashboard" style="display:none;">
+    <h2>🎟️ Lucky Draw Submissions</h2>
+    <div>
+      <button class="refresh-btn" id="refreshBtn">↻ Refresh Data</button>
+      <button class="export-btn" id="exportBtn">⬇️ Export as CSV</button>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="num" id="statBooked">0</div><div class="label">Tokens Booked</div></div>
+      <div class="stat-box"><div class="num" id="statRemaining">500</div><div class="label">Tokens Remaining (of 500)</div></div>
+      <div class="stat-box"><div class="num" id="statResidents">0</div><div class="label">Unique Residents</div></div>
+      <div class="stat-box"><div class="num" id="statRevenue">₹0</div><div class="label">Total Collected (est.)</div></div>
+    </div>
+
+    <input type="text" id="searchBox" class="search-box" placeholder="Search by name, mobile, tower, flat or serial no..." />
+
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="adminTable">
+        <thead>
+          <tr>
+            <th>#</th><th>Timestamp</th><th>Name</th><th>Mobile</th><th>Tower</th><th>Flat</th><th>Serial No.</th><th>Payment Proof</th><th>Ticket Image</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>Made with devotion for the Ganesh Chaturthi celebrations 🕉️</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>
