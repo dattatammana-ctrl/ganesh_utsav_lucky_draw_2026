@@ -357,8 +357,8 @@ body {
 }
 
 @media (max-width: 560px) {
-  .ticket { padding: 10px; gap: 10px; }
-  .ticket-left { flex: 0 0 34%; max-width: 34%; }
+  .ticket { padding: 10px; gap: 10px; align-items: center; }
+  .ticket-left { flex: 0 0 34%; max-width: 34%; align-self: center; }
   .ganesha-img { width: 100%; height: auto; }
   .stamp-badge { bottom: 4px; font-size: 8px; padding: 2px 6px; border-width: 2px; }
   .ticket-serial-box { min-width: 82px; padding: 5px 7px; }
